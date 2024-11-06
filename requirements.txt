@@ -1,0 +1,5 @@
+Flask                   # Framework web para o backend
+Flask-JWT-Extended      # Para autenticação JWT
+pyorient                # Conexão com o banco de dados OrientDB
+reportlab               # Geração de PDFs para as vistorias
+python-dotenv           # Gerenciar variáveis de ambiente
