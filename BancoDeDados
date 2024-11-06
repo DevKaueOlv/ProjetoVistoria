@@ -1,0 +1,41 @@
+-- Criação da classe Usuario
+CREATE CLASS Usuario EXTENDS V
+
+-- Criação da classe Registro
+CREATE CLASS Registro EXTENDS V
+
+-- Propriedades para a classe Usuario
+CREATE PROPERTY Usuario.login STRING
+CREATE PROPERTY Usuario.senha STRING
+
+-- Propriedades para a classe Registro
+CREATE PROPERTY Registro.vistoriador STRING
+CREATE PROPERTY Registro.data_vistoria DATETIME
+CREATE PROPERTY Registro.tipo_vistoria STRING  -- Entrada ou Saída
+CREATE PROPERTY Registro.tipo_imovel STRING  -- Comercial, Industrial, Residencial
+CREATE PROPERTY Registro.endereco_imovel STRING
+CREATE PROPERTY Registro.locador STRING
+CREATE PROPERTY Registro.locatario STRING
+CREATE PROPERTY Registro.ambientes STRING  -- Ambientes do imóvel
+CREATE PROPERTY Registro.caracteristicas_imovel STRING  -- Características do imóvel
+
+-- Criação Aresta
+CREATE CLASS Criou EXTENDS E
+
+-- Inserindo um usuário de exemplo
+INSERT INTO Usuario SET login = 'admin', senha = 'admin'
+
+-- Inserindo um registro de vistoria
+INSERT INTO Registro SET 
+    vistoriador = 'João Silva',
+    data_vistoria = sysdate(),
+    tipo_vistoria = 'Entrada',
+    tipo_imovel = 'Comercial',
+    endereco_imovel = 'Rua A, 123',
+    locador = 'Maria Oliveira',
+    locatario = 'Pedro Santos',
+    ambientes = 'Sala, Banheiro, Cozinha',
+    caracteristicas_imovel = 'Piso frio, Iluminação natural'
+
+-- Criando uma relação entre o Usuário e o Registro (exemplo: "Criou")
+CREATE EDGE Criou FROM (SELECT FROM Usuario WHERE login = 'admin') TO (SELECT FROM Registro WHERE vistoriador = 'João Silva')
